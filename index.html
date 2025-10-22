@@ -8,19 +8,17 @@
   <!-- Base style -->
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- Favicon (uses logo for now) -->
+  <link rel="icon" type="image/png" href="logo.png?v=4" />
 
-  <!-- SEO and social -->
+  <!-- SEO / social -->
   <meta name="description" content="Lema Analytics builds open, accessible data projects for public transparency and civic insight.">
   <meta property="og:title" content="Lema Analytics">
   <meta property="og:description" content="Government data, made simple — parcel indexes and open analytics.">
   <meta property="og:url" content="https://lemanalytics.com">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://lemanalytics.com/logo.png">
-  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Custom style -->
   <style>
     :root {
       --primary:#2563EB;
@@ -30,48 +28,27 @@
       --muted:#6B7280;
     }
 
-    body {
-      background:var(--bg);
-      color:var(--text);
+    body { background:var(--bg); color:var(--text); }
+
+    header { padding:0.5rem 0 1rem 0; }
+
+    /* Bigger logo */
+    nav ul { align-items:center; }
+    .brand { display:flex; align-items:center; }
+    .brand img {
+      height:120px;           /* desktop size */
+      width:auto;
+      display:block;
+    }
+    @media (max-width: 768px){
+      .brand img { height:64px; } /* mobile size */
     }
 
-    header {
-      padding:0.5rem 0 1rem 0;
-    }
-
-    nav img {
-      height:56px;
-      vertical-align:middle;
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-    }
-
-    .muted {
-      color:var(--muted);
-    }
-
-    main {
-      margin-top:2rem;
-    }
-
-    footer {
-      margin-top:4rem;
-      color:var(--muted);
-      text-align:center;
-    }
-
-    table {
-      font-size:0.95rem;
-    }
-
-    /* Improve button visual weight */
-    [role="button"].contrast {
-      background-color:var(--primary);
-      color:white;
-    }
+    .muted { color:var(--muted); }
+    main { margin-top:2rem; }
+    footer { margin-top:4rem; color:var(--muted); text-align:center; }
+    table { font-size:0.95rem; }
+    [role="button"].contrast { background-color:var(--primary); color:#fff; }
   </style>
 </head>
 
@@ -81,7 +58,7 @@
       <ul>
         <li class="brand">
           <a href="/" aria-label="Lema Analytics Home">
-            <img src="logo.png" alt="Lema Analytics">
+            <img src="logo.png?v=4" alt="Lema Analytics" fetchpriority="high">
           </a>
         </li>
       </ul>
@@ -94,7 +71,6 @@
   </header>
 
   <main class="container">
-
     <section>
       <h1>Government data, made simple.</h1>
       <p class="muted">Curated parcel-level data and open-data projects from Lema Analytics.</p>
@@ -110,11 +86,7 @@
       <table>
         <thead>
           <tr>
-            <th>County</th>
-            <th>State</th>
-            <th>Format</th>
-            <th>Source</th>
-            <th>Last Verified</th>
+            <th>County</th><th>State</th><th>Format</th><th>Source</th><th>Last Verified</th>
           </tr>
         </thead>
         <tbody>
@@ -124,9 +96,7 @@
             <td>Web</td>
             <td>
               <a href="https://gisdata.fultoncountyga.gov/datasets/tax-parcels/explore?location=33.837130%2C-84.476950%2C9.94"
-                 target="_blank" rel="noopener">
-                 Open Fulton County Parcel Data
-              </a>
+                 target="_blank" rel="noopener">Open Fulton County Parcel Data</a>
             </td>
             <td>2025-10-22</td>
           </tr>
@@ -140,7 +110,8 @@
         <h3>Top Owners: Atlanta Metro</h3>
         <p class="muted">Preliminary summary of open parcel data. More dashboards coming soon.</p>
         <div style="position:relative;padding-top:56.25%;border:1px solid #e5e7eb;border-radius:8px;">
-          <iframe src="https://public.tableau.com/views/YOUR_WORKBOOK/YOUR_SHEET?:showVizHome=no&:embed=true"
+          <iframe
+            src="https://public.tableau.com/views/YOUR_WORKBOOK/YOUR_SHEET?:showVizHome=no&:embed=true"
             style="position:absolute;inset:0;width:100%;height:100%;border:0"
             allowfullscreen></iframe>
         </div>
@@ -155,15 +126,12 @@
         <li>LinkedIn: <a href="https://www.linkedin.com/company/lema-analytics" target="_blank">Company page</a></li>
       </ul>
     </section>
-
   </main>
 
   <footer class="container">
     <small>© <span id="y"></span> Lema Analytics • Data from official county sources</small>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
