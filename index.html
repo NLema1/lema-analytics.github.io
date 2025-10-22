@@ -4,21 +4,52 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lema Analytics</title>
+
+  <!-- Base style -->
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- SEO and social -->
+  <meta name="description" content="Lema Analytics builds open, accessible data projects for public transparency and civic insight.">
+  <meta property="og:title" content="Lema Analytics">
+  <meta property="og:description" content="Government data, made simple — parcel indexes and open analytics.">
+  <meta property="og:url" content="https://lemanalytics.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lemanalytics.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Custom style -->
   <style>
-    :root{
-      --primary:#2563EB; --accent:#10B981; --bg:#F9FAFB; --text:#111827; --muted:#6B7280;
+    :root {
+      --primary:#2563EB;
+      --accent:#10B981;
+      --bg:#F9FAFB;
+      --text:#111827;
+      --muted:#6B7280;
     }
-    body{background:var(--bg); color:var(--text);}
-    header .brand{font-weight:700; letter-spacing:.2px;}
-    .muted{color:var(--muted);}
-    footer{margin-top:4rem; color:var(--muted);}
+    body {background:var(--bg); color:var(--text);}
+    header {padding:0.5rem 0 1rem 0;}
+    nav img {height:40px; vertical-align:middle; margin-right:0.5rem;}
+    .brand {font-weight:700; font-size:1.2rem; letter-spacing:.2px;}
+    .muted {color:var(--muted);}
+    main {margin-top:2rem;}
+    footer {margin-top:4rem; color:var(--muted);}
+    table {font-size:0.95rem;}
   </style>
 </head>
+
 <body>
   <header class="container">
     <nav>
-      <ul><li class="brand"><a href="/">Lema Analytics</a></li></ul>
+      <ul>
+        <li>
+          <a href="/" class="brand">
+            <img src="logo.png" alt="Lema Analytics logo">Lema Analytics
+          </a>
+        </li>
+      </ul>
       <ul>
         <li><a href="#data">Data Index</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -28,6 +59,7 @@
   </header>
 
   <main class="container">
+
     <section>
       <h1>Government data, made simple.</h1>
       <p class="muted">Curated parcel-level data and open-data projects from Lema Analytics.</p>
@@ -41,11 +73,15 @@
       <h2>Data Index</h2>
       <p class="muted">Direct links to official county sources. Updated as new datasets are verified.</p>
       <table>
-        <thead><tr><th>County</th><th>State</th><th>Format</th><th>Source</th><th>Last Verified</th></tr></thead>
+        <thead>
+          <tr><th>County</th><th>State</th><th>Format</th><th>Source</th><th>Last Verified</th></tr>
+        </thead>
         <tbody>
-          <tr><td>Fulton</td><td>GA</td><td>CSV</td>
-              <td><a href="YOUR_FULTON_LINK" target="_blank">Download</a></td>
-              <td>2025-10-22</td></tr>
+          <tr>
+            <td>Fulton</td><td>GA</td><td>CSV</td>
+            <td><a href="YOUR_FULTON_LINK" target="_blank" rel="noopener">Download</a></td>
+            <td>2025-10-22</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -55,6 +91,12 @@
       <article>
         <h3>Top Owners: Atlanta Metro</h3>
         <p class="muted">Preliminary summary of open parcel data. More dashboards coming soon.</p>
+        <!-- Tableau embed placeholder -->
+        <div style="position:relative;padding-top:56.25%;border:1px solid #e5e7eb;border-radius:8px;">
+          <iframe src="https://public.tableau.com/views/YOUR_WORKBOOK/YOUR_SHEET?:showVizHome=no&:embed=true"
+            style="position:absolute;inset:0;width:100%;height:100%;border:0"
+            allowfullscreen></iframe>
+        </div>
       </article>
     </section>
 
@@ -62,15 +104,17 @@
       <h2>About Lema Analytics</h2>
       <p>We simplify access to public data and build lightweight analytics tools for government and civic users.</p>
       <ul>
-        <li>Email: <a href="mailto:hello@lemaanalytics.com">hello@lemanalytics.com</a></li>
+        <li>Email: <a href="mailto:hello@lemanalytics.com">hello@lemanalytics.com</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/company/lema-analytics" target="_blank">Company page</a></li>
       </ul>
     </section>
+
   </main>
 
   <footer class="container">
     <small>© <span id="y"></span> Lema Analytics • Data from official county sources</small>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
