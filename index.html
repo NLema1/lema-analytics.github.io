@@ -8,57 +8,153 @@
   <!-- Base style -->
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
 
-  <!-- Favicon (uses logo for now) -->
-  <link rel="icon" type="image/png" href="logo.png?v=4" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png?v=6" />
 
-  <!-- SEO / social -->
+  <!-- SEO / Social -->
   <meta name="description" content="Lema Analytics builds open, accessible data projects for public transparency and civic insight.">
   <meta property="og:title" content="Lema Analytics">
   <meta property="og:description" content="Government data, made simple — parcel indexes and open analytics.">
   <meta property="og:url" content="https://lemanalytics.com">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://lemanalytics.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Custom styling -->
   <style>
+    /* --------- Color System --------- */
     :root {
-      --primary:#2563EB;
-      --accent:#10B981;
-      --bg:#F9FAFB;
+      --primary:#1E3A8A;       /* deep navy from your logo text */
+      --accent:#0EA5E9;        /* teal blue accent */
+      --bg:#f8f6f3;            /* soft beige background from logo */
       --text:#111827;
       --muted:#6B7280;
+      --radius:18px;
     }
 
-    body { background:var(--bg); color:var(--text); }
+    body {
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6;
+    }
 
-    header { padding:0.5rem 0 1rem 0; }
+    /* --------- Header --------- */
+    header {
+      background:var(--bg);
+      padding:1.25rem 0;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
 
-    /* Bigger logo */
     nav ul { align-items:center; }
-    .brand { display:flex; align-items:center; }
+
+    .brand {
+      display:flex;
+      align-items:center;
+    }
+
     .brand img {
-      height:120px;           /* desktop size */
+      height:140px;
       width:auto;
       display:block;
     }
-    @media (max-width: 768px){
-      .brand img { height:64px; } /* mobile size */
+
+    @media (max-width:768px){
+      .brand img { height:80px; }
     }
 
-    .muted { color:var(--muted); }
-    main { margin-top:2rem; }
-    footer { margin-top:4rem; color:var(--muted); text-align:center; }
-    table { font-size:0.95rem; }
-    [role="button"].contrast { background-color:var(--primary); color:#fff; }
+    /* --------- Main Layout --------- */
+    main {
+      margin-top:2.5rem;
+      max-width:900px;
+    }
+
+    section {
+      margin-bottom:4rem;
+    }
+
+    h1, h2, h3 {
+      color:var(--primary);
+      letter-spacing:-0.02em;
+    }
+
+    p.muted {
+      color:var(--muted);
+      margin-bottom:1.25rem;
+    }
+
+    /* --------- Buttons --------- */
+    [role="button"].contrast {
+      background-color:var(--primary);
+      color:white;
+      border-radius:var(--radius);
+      padding:0.75rem 1.25rem;
+      font-weight:500;
+    }
+
+    [role="button"].secondary {
+      background-color:transparent;
+      border:1px solid var(--primary);
+      color:var(--primary);
+      border-radius:var(--radius);
+      padding:0.75rem 1.25rem;
+      font-weight:500;
+    }
+
+    [role="button"].contrast:hover {
+      background-color:#0f2d6c;
+    }
+
+    [role="button"].secondary:hover {
+      background-color:var(--primary);
+      color:white;
+    }
+
+    /* --------- Data Table --------- */
+    table {
+      font-size:0.95rem;
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:white;
+      box-shadow:0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    table thead {
+      background-color:#f3f4f6;
+    }
+
+    table td, table th {
+      padding:0.75rem 1rem;
+    }
+
+    table a {
+      color:var(--accent);
+      text-decoration:none;
+    }
+
+    table a:hover {
+      text-decoration:underline;
+    }
+
+    /* --------- Footer --------- */
+    footer {
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid rgba(0,0,0,0.05);
+      padding:1.5rem 0;
+      font-size:0.9rem;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Header -->
   <header class="container">
     <nav>
       <ul>
         <li class="brand">
           <a href="/" aria-label="Lema Analytics Home">
-            <img src="logo.png?v=4" alt="Lema Analytics" fetchpriority="high">
+            <img src="logo.png?v=6" alt="Lema Analytics" fetchpriority="high">
           </a>
         </li>
       </ul>
@@ -70,11 +166,16 @@
     </nav>
   </header>
 
+  <!-- Main -->
   <main class="container">
+
     <section>
       <h1>Government data, made simple.</h1>
-      <p class="muted">Curated parcel-level data and open-data projects from Lema Analytics.</p>
-      <div>
+      <p class="muted">
+        Lema Analytics curates open datasets and transforms them into accessible, transparent insights
+        for civic and institutional use.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="#data" role="button" class="contrast">Browse data</a>
         <a href="#projects" role="button" class="secondary">View dashboards</a>
       </div>
@@ -109,7 +210,7 @@
       <article>
         <h3>Top Owners: Atlanta Metro</h3>
         <p class="muted">Preliminary summary of open parcel data. More dashboards coming soon.</p>
-        <div style="position:relative;padding-top:56.25%;border:1px solid #e5e7eb;border-radius:8px;">
+        <div style="position:relative;padding-top:56.25%;border:1px solid #e5e7eb;border-radius:var(--radius);overflow:hidden;">
           <iframe
             src="https://public.tableau.com/views/YOUR_WORKBOOK/YOUR_SHEET?:showVizHome=no&:embed=true"
             style="position:absolute;inset:0;width:100%;height:100%;border:0"
@@ -120,7 +221,10 @@
 
     <section id="about">
       <h2>About Lema Analytics</h2>
-      <p>We simplify access to public data and build lightweight analytics tools for government and civic users.</p>
+      <p>
+        We simplify access to public data and build lightweight analytics tools for government
+        and civic users. Our focus is clarity, accessibility, and open methodology.
+      </p>
       <ul>
         <li>Email: <a href="mailto:hello@lemanalytics.com">hello@lemanalytics.com</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/company/lema-analytics" target="_blank">Company page</a></li>
@@ -128,10 +232,11 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="container">
     <small>© <span id="y"></span> Lema Analytics • Data from official county sources</small>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
