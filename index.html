@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lema Analytics</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root{
+      --primary:#2563EB; --accent:#10B981; --bg:#F9FAFB; --text:#111827; --muted:#6B7280;
+    }
+    body{background:var(--bg); color:var(--text);}
+    header .brand{font-weight:700; letter-spacing:.2px;}
+    .muted{color:var(--muted);}
+    footer{margin-top:4rem; color:var(--muted);}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul><li class="brand"><a href="/">Lema Analytics</a></li></ul>
+      <ul>
+        <li><a href="#data">Data Index</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h1>Government data, made simple.</h1>
+      <p class="muted">Curated parcel-level data and open-data projects from Lema Analytics.</p>
+      <div>
+        <a href="#data" role="button" class="contrast">Browse data</a>
+        <a href="#projects" role="button" class="secondary">View dashboards</a>
+      </div>
+    </section>
+
+    <section id="data">
+      <h2>Data Index</h2>
+      <p class="muted">Direct links to official county sources. Updated as new datasets are verified.</p>
+      <table>
+        <thead><tr><th>County</th><th>State</th><th>Format</th><th>Source</th><th>Last Verified</th></tr></thead>
+        <tbody>
+          <tr><td>Fulton</td><td>GA</td><td>CSV</td>
+              <td><a href="YOUR_FULTON_LINK" target="_blank">Download</a></td>
+              <td>2025-10-22</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <article>
+        <h3>Top Owners: Atlanta Metro</h3>
+        <p class="muted">Preliminary summary of open parcel data. More dashboards coming soon.</p>
+      </article>
+    </section>
+
+    <section id="about">
+      <h2>About Lema Analytics</h2>
+      <p>We simplify access to public data and build lightweight analytics tools for government and civic users.</p>
+      <ul>
+        <li>Email: <a href="mailto:hello@lemaanalytics.com">hello@lemanalytics.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/company/lema-analytics" target="_blank">Company page</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© <span id="y"></span> Lema Analytics • Data from official county sources</small>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
