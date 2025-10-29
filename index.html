@@ -2,202 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lema Analytics — Data Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lema Analytics — Data · Defense · Decisions</title>
 <style>
-  :root {
-    --primary:#1E3A8A;     /* deep navy */
-    --accent:#0EA5E9;      /* teal-blue */
-    --bg:#f8f6f3;          /* soft beige background */
+  :root{
+    --primary:#1E3A8A; /* deep navy */
+    --accent:#0EA5E9;  /* teal-blue */
+    --bg:#f8f6f3;      /* soft beige */
     --card:#ffffff;
     --text:#111827;
     --muted:#6B7280;
     --radius:14px;
   }
-
-  body {
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    margin:0;
-    padding:0;
-  }
-
-  header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:1.5rem 2rem;
-    background:var(--bg);
-  }
-
-  .logo {
-    height:150px; /* increased size */
-  }
-
-  nav a {
-    margin-left:1.5rem;
-    color:var(--accent);
-    text-decoration:none;
-    font-weight:500;
-    font-size:1rem;
-  }
-
-  nav a:hover {
-    text-decoration:underline;
-  }
-
-  main {
-    max-width:900px;
-    margin:2rem auto;
-    padding:0 1rem;
-  }
-
-  h1 {
-    font-size:2rem;
-    color:var(--primary);
-    margin-bottom:0.5rem;
-  }
-
-  h2 {
-    color:var(--primary);
-    margin-top:2rem;
-  }
-
-  p.muted {
-    color:var(--muted);
-  }
-
-  [role="button"] {
-    display:inline-block;
-    text-decoration:none;
-    padding:0.75rem 1.25rem;
-    border-radius:var(--radius);
-    font-weight:600;
-    margin-right:1rem;
-  }
-
-  [role="button"].contrast {
-    background:var(--primary);
-    color:white;
-  }
-
-  [role="button"].secondary {
-    border:1px solid var(--primary);
-    color:var(--primary);
-  }
-
-  table {
-    width:100%;
-    border-collapse:collapse;
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:0 1px 3px rgba(0,0,0,0.1);
-    overflow:hidden;
-    margin-top:1rem;
-  }
-
-  thead {
-    background-color:#e9ecf4;
-  }
-
-  th, td {
-    padding:0.75rem 1rem;
-    text-align:left;
-    font-size:0.95rem;
-  }
-
-  th {
-    color:var(--primary);
-  }
-
-  td {
-    border-top:1px solid #eee;
-  }
-
-  tr:hover {
-    background-color:#f5f6fa;
-  }
-
-  a {
-    color:var(--accent);
-    text-decoration:none;
-  }
-
-  a:hover {
-    text-decoration:underline;
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid #e9ecef;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  .logo{height:48px}
+  nav a{margin-left:1.2rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.95rem}
+  nav a:hover{text-decoration:underline}
+  main{max-width:1000px;margin:2rem auto;padding:0 1rem}
+  h1{font-size:2.35rem;color:var(--primary);margin:.2rem 0 .5rem}
+  h2{color:var(--primary);font-size:1.4rem;margin:0 0 .6rem}
+  h3{margin:.2rem 0 .3rem}
+  p.muted{color:var(--muted)}
+  .btn{display:inline-block;padding:.8rem 1.2rem;border-radius:var(--radius);text-decoration:none;font-weight:700}
+  .btn.primary{background:var(--primary);color:#fff}
+  .btn.outline{border:1px solid var(--primary);color:var(--primary);margin-left:.5rem}
+  section{margin-top:2rem}
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1rem}
+  .grid{display:grid;gap:1rem}
+  .cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .list{margin:.25rem 0 0;padding-left:1.1rem}
+  .badge{display:inline-block;padding:.35rem .65rem;border-radius:999px;background:#e9ecf4;color:#263a6b;font-size:.82rem;margin:.25rem .35rem .1rem 0}
+  /* Text-only “logos” */
+  .programs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-top:.8rem}
+  .program{background:var(--card);border:1px solid #e6e9ef;border-radius:12px;padding:.9rem .95rem;display:flex;align-items:center;gap:.6rem}
+  .program .dot{width:10px;height:10px;border-radius:50%;background:#cbd5e1;flex:0 0 10px}
+  .program .name{font-weight:700}
+  .program .meta{color:var(--muted);font-size:.9rem;margin-left:auto}
+  footer{margin:2.5rem 0 1rem;padding:0 1rem;color:var(--muted);font-size:.9rem}
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0b0d12;--card:#0f141b;--text:#e6e6e6;--muted:#9aa4b2}
+    header{border-bottom:1px solid #141b26}
+    .badge{background:#1e293b;color:#c7d2fe}
+    .program{border-color:#1b2532}
   }
 </style>
 </head>
-
 <body>
 <header>
   <img src="logo.png" alt="Lema Analytics" class="logo" />
   <nav>
-    <a href="#">Data Index</a>
-    <a href="#">Projects</a>
-    <a href="#">About</a>
+    <a href="#about">About</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <main>
-  <h1>Government data, made simple.</h1>
-  <p class="muted">Lema Analytics curates open datasets and transforms them into accessible, transparent insights for civic and institutional use.</p>
+  <!-- HERO -->
+  <section class="card" style="padding:1.25rem">
+    <h1>Data. Defense. Decisions.</h1>
+    <p class="muted">Lema Analytics provides advanced analytics, data engineering, and visualization for federal and enterprise programs.</p>
+    <div style="margin-top:.6rem">
+      <a class="btn primary" href="#capabilities">What we do</a>
+      <a class="btn outline" href="#experience">Where we’ve supported</a>
+    </div>
+  </section>
 
-  <div style="margin-top:1rem;">
-    <a href="#" role="button" class="contrast">Browse data</a>
-    <a href="#" role="button" class="secondary">View dashboards</a>
-  </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="card">
+      <p>Lema Analytics transforms complex information systems into operational intelligence. We support mission-critical programs through subcontracting agreements with U.S. defense and federal agencies.</p>
+      <div>
+        <span class="badge">DoD-focused</span>
+        <span class="badge">Data Engineering</span>
+        <span class="badge">ETL / Pipelines</span>
+        <span class="badge">Dashboards</span>
+      </div>
+    </div>
+  </section>
 
-  <h2>Data Index</h2>
-  <p class="muted">Direct links to official county parcel data. Updated as new datasets are verified.</p>
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <h2>Capabilities</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Data Engineering</h3>
+        <ul class="list">
+          <li>Schema and logic modernization in Oracle and Databricks</li>
+          <li>AWS data services and RDS optimization</li>
+          <li>Foundry pipelines and Python/SQL ETL</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Integration & Automation</h3>
+        <ul class="list">
+          <li>Local pipelines integrated with SharePoint</li>
+          <li>Versioned releases and access controls</li>
+          <li>Data quality checks and monitoring</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Analytics & Visualization</h3>
+        <ul class="list">
+          <li>Tableau and Power BI dashboards</li>
+          <li>KPI design and governance</li>
+          <li>Executive reporting frameworks</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Advisory</h3>
+        <ul class="list">
+          <li>Architecture reviews and migration planning</li>
+          <li>Cost-aware pipeline design</li>
+          <li>Cutover playbooks and runbooks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <table>
-    <thead>
-      <tr>
-        <th>County</th>
-        <th>State</th>
-        <th>Format</th>
-        <th>Source</th>
-        <th>Names Included</th>
-        <th>Last Verified</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Los Angeles</td>
-        <td>CA</td>
-        <td>Web</td>
-        <td><a href="https://hub.arcgis.com/datasets/lacounty::la-county-parcel-map-service/about" target="_blank">Open LA County Parcel Data</a></td>
-        <td>FALSE</td>
-        <td>2025-10-22</td>
-      </tr>
-      <tr>
-        <td>Cook</td>
-        <td>IL</td>
-        <td>Web</td>
-        <td><a href="https://hub-cookcountyil.opendata.arcgis.com/datasets/5c2e70b7f31349dc83924a98df8fdbbb_2024/explore" target="_blank">Open Cook County Parcel Data</a></td>
-        <td>FALSE</td>
-        <td>2025-10-22</td>
-      </tr>
-      <tr>
-        <td>Harris</td>
-        <td>TX</td>
-        <td>Web</td>
-        <td><a href="https://geohub.houstontx.gov/datasets/harris-county-parcels/explore?location=29.932354%2C-95.480150%2C8.58" target="_blank">Open Harris County Parcel Data</a></td>
-        <td>TRUE</td>
-        <td>2025-10-22</td>
-      </tr>
-      <tr>
-        <td>Fulton</td>
-        <td>GA</td>
-        <td>Web</td>
-        <td><a href="https://gisdata.fultoncountyga.gov/datasets/tax-parcels/explore?location=33.837130%2C-84.476950%2C9.94" target="_blank">Open Fulton County Parcel Data</a></td>
-        <td>TRUE</td>
-        <td>2025-10-22</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="card">
+      <p>Lema Analytics has delivered analytics and data-integration support for programs within the U.S. Army, Navy, Marine Corps, Office of the Secretary of Defense (CAPE and Advana initiatives), and the Federal Aviation Administration through subcontracting agreements.</p>
+      <ul class="list">
+        <li>Built and optimized tables and logic in Oracle and Databricks</li>
+        <li>Developed and adjusted Palantir Foundry and AWS data flows</li>
+        <li>Implemented secure local-to-SharePoint pipelines</li>
+        <li>Delivered mission dashboards in Tableau and Power BI</li>
+      </ul>
+    </div>
+
+    <!-- SUPPORTED PROGRAMS: TEXT-ONLY -->
+    <div class="programs" aria-label="Supported federal programs (text-only)">
+      <div class="program"><span class="dot"></span><span class="name">U.S. Army</span><span class="meta">G-4, XVIII Airborne Corps</span></div>
+      <div class="program"><span class="dot"></span><span class="name">U.S. Navy</span><span class="meta">CAPE initiatives</span></div>
+      <div class="program"><span class="dot"></span><span class="name">U.S. Marine Corps</span><span class="meta">CAPE initiatives</span></div>
+      <div class="program"><span class="dot"></span><span class="name">Office of the Secretary of Defense</span><span class="meta">CAPE · Advana</span></div>
+      <div class="program"><span class="dot"></span><span class="name">Federal Aviation Administration</span><span class="meta">Analytics support</span></div>
+    </div>
+
+    <p class="muted" style="margin-top:.7rem">
+      Agency names denote supported programs only. Lema Analytics is not directly affiliated with, endorsed by, or sponsored by these agencies.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>For consulting inquiries:</p>
+      <p><strong>Email:</strong> <a href="mailto:info@lemaanalytics.com">info@lemaanalytics.com</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Connect</a></p>
+      <p class="muted">Active U.S. government client support through subcontracting agreements. Clearance status can be verified upon request.</p>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Lema Analytics. All rights reserved.</footer>
 </main>
+
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
