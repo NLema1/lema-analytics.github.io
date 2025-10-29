@@ -1,170 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lema Analytics — Data · Defense · Decisions</title>
+<title>Lema Analytics — Applied Data Systems</title>
+<meta name="description" content="Lema Analytics builds reliable data systems and decision tooling for regulated industries and high-stakes operations. Since 2020." />
 <style>
   :root{
-    --primary:#1E3A8A; /* deep navy */
-    --accent:#0EA5E9;  /* teal-blue */
-    --bg:#f8f6f3;      /* soft beige */
-    --card:#ffffff;
-    --text:#111827;
+    --primary:#1E3A8A;   /* deep navy */
+    --accent:#0EA5E9;    /* teal-blue */
+    --bg:#0b1020;        /* dark base for high-contrast hero */
+    --paper:#ffffff;     /* card bg */
+    --ink:#0b1220;       /* body text on light */
     --muted:#6B7280;
-    --radius:14px;
+    --ring:rgba(14,165,233,.35);
+    --radius:16px;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-  header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid #e9ecef;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between}
-  .logo{height:48px}
-  nav a{margin-left:1.2rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.95rem}
-  nav a:hover{text-decoration:underline}
-  main{max-width:1000px;margin:2rem auto;padding:0 1rem}
-  h1{font-size:2.35rem;color:var(--primary);margin:.2rem 0 .5rem}
-  h2{color:var(--primary);font-size:1.4rem;margin:0 0 .6rem}
-  h3{margin:.2rem 0 .3rem}
-  p.muted{color:var(--muted)}
-  .btn{display:inline-block;padding:.8rem 1.2rem;border-radius:var(--radius);text-decoration:none;font-weight:700}
-  .btn.primary{background:var(--primary);color:#fff}
-  .btn.outline{border:1px solid var(--primary);color:var(--primary);margin-left:.5rem}
-  section{margin-top:2rem}
-  .card{background:var(--card);border-radius:var(--radius);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1rem}
-  .grid{display:grid;gap:1rem}
-  .cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .list{margin:.25rem 0 0;padding-left:1.1rem}
-  .badge{display:inline-block;padding:.35rem .65rem;border-radius:999px;background:#e9ecf4;color:#263a6b;font-size:.82rem;margin:.25rem .35rem .1rem 0}
-  /* Text-only “logos” */
-  .programs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-top:.8rem}
-  .program{background:var(--card);border:1px solid #e6e9ef;border-radius:12px;padding:.9rem .95rem;display:flex;align-items:center;gap:.6rem}
-  .program .dot{width:10px;height:10px;border-radius:50%;background:#cbd5e1;flex:0 0 10px}
-  .program .name{font-weight:700}
-  .program .meta{color:var(--muted);font-size:.9rem;margin-left:auto}
-  footer{margin:2.5rem 0 1rem;padding:0 1rem;color:var(--muted);font-size:.9rem}
-  @media (prefers-color-scheme: dark){
-    :root{--bg:#0b0d12;--card:#0f141b;--text:#e6e6e6;--muted:#9aa4b2}
-    header{border-bottom:1px solid #141b26}
-    .badge{background:#1e293b;color:#c7d2fe}
-    .program{border-color:#1b2532}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:#eaf2ff; background:var(--bg);
+  }
+
+  /* ====== Global layout ====== */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  header{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:saturate(140%) blur(6px);
+    background:linear-gradient(180deg, rgba(11,16,32,.85), rgba(11,16,32,.35) 70%, transparent);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:40px;border-radius:10px}
+  .brand .name{font-weight:800;letter-spacing:.2px}
+  nav a{color:#cfe4ff;text-decoration:none;font-weight:600;margin-left:22px}
+  nav a:hover{color:#fff}
+
+  /* ====== Hero ====== */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:84px 0 42px;
+    background:
+      radial-gradient(1200px 600px at 70% -10%, rgba(14,165,233,.28) 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% -20%, rgba(30,58,138,.55) 0%, transparent 60%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center}
+  h1{
+    font-size: clamp(36px, 6vw, 60px);
+    line-height:1.02; margin:0;
+    letter-spacing:-.5px; color:#ffffff;
+  }
+  .kicker{display:inline-block;font-weight:700;letter-spacing:.2px;
+    background:linear-gradient(90deg, var(--accent), #60a5fa);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:10px}
+  .sub{color:#c7d2fe;font-size: clamp(16px, 2.1vw, 19px);margin-top:14px}
+  .cta{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    text-decoration:none;font-weight:800;letter-spacing:.2px;
+    padding:14px 18px;border-radius:12px;border:1px solid transparent;
+  }
+  .btn.primary{background:linear-gradient(180deg, var(--accent), #1f8ed0); color:#001326;
+    box-shadow:0 12px 30px -12px var(--ring)}
+  .btn.ghost{color:#d6e4ff;border-color:rgba(255,255,255,.14)}
+  .hero-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius); padding:22px; color:#e7eeff;
+  }
+  .hero-card h3{margin:0 0 6px 0;font-size:18px}
+  .bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);
+    padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:13px}
+
+  /* ====== “Trusted by” text-only strip ====== */
+  .trust{
+    margin-top:28px; padding:12px; border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .logos{
+    display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:12px;align-items:center
+  }
+  .tlogo{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;padding:12px 14px;text-align:center;color:#cfe4ff;font-weight:800;
+    letter-spacing:.3px
+  }
+  .tmeta{display:block;color:#9fb4d9;font-weight:600;font-size:12px;margin-top:2px}
+
+  /* ====== Light sections ====== */
+  section.light{
+    background:#f8f6f3;color:var(--ink);
+    padding:70px 0;border-top:1px solid #ece7df;border-bottom:1px solid #ece7df;
+  }
+  .section-title{color:var(--primary);font-size:28px;margin:0 0 8px 0}
+  .section-sub{color:#4b5563;margin:0 0 22px 0}
+
+  .cards{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px
+  }
+  .card{
+    background:var(--paper);border:1px solid #e6e1d9;border-radius:16px;padding:18px;
+    box-shadow:0 10px 30px -18px rgba(16,24,40,.15)
+  }
+  .card h3{margin:2px 0 8px 0;font-size:18px;color:var(--primary)}
+  .card ul{margin:0;padding-left:18px}
+  .badge{display:inline-block;background:#e9ecf4;border:1px solid #dbe2f3;color:#263a6b;
+    font-weight:700;border-radius:999px;padding:6px 10px;font-size:12px;margin:4px 6px 0 0}
+
+  /* ====== Two-column band ====== */
+  .band{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+  .band .panel{background:var(--paper);border:1px solid #e6e1d9;border-radius:16px;padding:18px}
+
+  /* ====== Footer ====== */
+  footer{
+    color:#a8b9d6; padding:24px 0; font-size:14px; border-top:1px solid rgba(255,255,255,.08)
+  }
+  footer a{color:#cfe4ff;text-decoration:none}
+
+  /* ====== Responsive ====== */
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr}
+    .bullets{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .band{grid-template-columns:1fr}
+    .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
 </style>
 </head>
 <body>
+
 <header>
-  <img src="logo.png" alt="Lema Analytics" class="logo" />
-  <nav>
-    <a href="#about">About</a>
-    <a href="#capabilities">Capabilities</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="wrap nav">
+    <div class="brand">
+      <img src="logo.png" alt="Lema Analytics" />
+      <div class="name">Lema Analytics</div>
+    </div>
+    <nav>
+      <a href="#solutions">Solutions</a>
+      <a href="#industries">Industries</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-  <!-- HERO -->
-  <section class="card" style="padding:1.25rem">
-    <h1>Data. Defense. Decisions.</h1>
-    <p class="muted">Lema Analytics provides advanced analytics, data engineering, and visualization for federal and enterprise programs.</p>
-    <div style="margin-top:.6rem">
-      <a class="btn primary" href="#capabilities">What we do</a>
-      <a class="btn outline" href="#experience">Where we’ve supported</a>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About</h2>
-    <div class="card">
-      <p>Lema Analytics transforms complex information systems into operational intelligence. We support mission-critical programs through subcontracting agreements with U.S. defense and federal agencies.</p>
-      <div>
-        <span class="badge">DoD-focused</span>
-        <span class="badge">Data Engineering</span>
-        <span class="badge">ETL / Pipelines</span>
-        <span class="badge">Dashboards</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Since 2020</span>
+      <h1>Build data systems that executives trust and engineers like to maintain.</h1>
+      <p class="sub">We design and ship durable pipelines, governed metrics, and decision tooling. Fast lifts first. No mystery tech.</p>
+      <div class="cta">
+        <a class="btn primary" href="#solutions">See solutions</a>
+        <a class="btn ghost" href="#contact">Start a project</a>
+      </div>
+      <div class="trust">
+        <div class="logos">
+          <div class="tlogo">U.S. Army <span class="tmeta">G-4 · XVIII ABN</span></div>
+          <div class="tlogo">U.S. Navy <span class="tmeta">CAPE</span></div>
+          <div class="tlogo">U.S. Marine Corps <span class="tmeta">CAPE</span></div>
+          <div class="tlogo">OSD <span class="tmeta">CAPE · Advana</span></div>
+          <div class="tlogo">FAA <span class="tmeta">Programs</span></div>
+        </div>
+        <p style="margin:.6rem 0 0;color:#9fb4d9;font-size:12px">
+          Names denote supported programs via subcontracting. No affiliation or endorsement implied.
+        </p>
       </div>
     </div>
-  </section>
+    <div>
+      <div class="hero-card">
+        <h3>What we ship</h3>
+        <div class="bullets">
+          <span class="chip">Oracle → Databricks logic modernization</span>
+          <span class="chip">Foundry pipelines and QA gates</span>
+          <span class="chip">AWS data services and RDS tuning</span>
+          <span class="chip">SharePoint-integrated local flows</span>
+          <span class="chip">Power BI and Tableau exec dashboards</span>
+          <span class="chip">Metric catalogs and KPI governance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- CAPABILITIES -->
-  <section id="capabilities">
-    <h2>Capabilities</h2>
-    <div class="grid cols-2">
+<!-- SOLUTIONS -->
+<section id="solutions" class="light">
+  <div class="wrap">
+    <h2 class="section-title">Solutions</h2>
+    <p class="section-sub">Architecture, implementation, and handoff. We play well with existing stacks.</p>
+
+    <div class="cards">
       <div class="card">
         <h3>Data Engineering</h3>
-        <ul class="list">
-          <li>Schema and logic modernization in Oracle and Databricks</li>
-          <li>AWS data services and RDS optimization</li>
-          <li>Foundry pipelines and Python/SQL ETL</li>
+        <ul>
+          <li>Schema and transformation design in Oracle & Databricks</li>
+          <li>Batch and streaming ETL in Python/SQL</li>
+          <li>Cost-aware storage and compute layouts on AWS</li>
         </ul>
+        <div style="margin-top:10px">
+          <span class="badge">Orchestrated</span><span class="badge">Tested</span><span class="badge">Versioned</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Analytics & BI</h3>
+        <ul>
+          <li>Power BI and Tableau dashboards with row-level security</li>
+          <li>Metric standardization and lineage</li>
+          <li>Executive reporting frameworks</li>
+        </ul>
+        <div style="margin-top:10px">
+          <span class="badge">Governed</span><span class="badge">Performant</span><span class="badge">Maintainable</span>
+        </div>
       </div>
       <div class="card">
         <h3>Integration & Automation</h3>
-        <ul class="list">
-          <li>Local pipelines integrated with SharePoint</li>
-          <li>Versioned releases and access controls</li>
-          <li>Data quality checks and monitoring</li>
+        <ul>
+          <li>Palantir Foundry pipelines with QA checks</li>
+          <li>Local automations integrated with SharePoint</li>
+          <li>Dev → Test → Prod release playbooks</li>
+        </ul>
+        <div style="margin-top:10px">
+          <span class="badge">CI-style</span><span class="badge">Secure</span><span class="badge">Auditable</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="band">
+      <div class="panel">
+        <h3 style="color:var(--primary);margin-top:0">Engagement models</h3>
+        <ul>
+          <li>Scoped delivery with fixed milestones</li>
+          <li>Monthly retainer for continuous improvements</li>
+          <li>Architecture reviews and rescue projects</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="color:var(--primary);margin-top:0">Platforms we support</h3>
+        <p style="margin:.4rem 0 0">
+          Oracle · AWS · Databricks · Palantir Foundry · Power BI · Tableau · Python · SQL
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries" class="light" style="background:#fff">
+  <div class="wrap">
+    <h2 class="section-title">Industries</h2>
+    <p class="section-sub">We operate across public sector and private markets.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Public Sector</h3>
+        <ul>
+          <li>Defense logistics and sustainment analytics</li>
+          <li>Financial planning and program transparency</li>
+          <li>Data modernization for secure environments</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Analytics & Visualization</h3>
-        <ul class="list">
-          <li>Tableau and Power BI dashboards</li>
-          <li>KPI design and governance</li>
-          <li>Executive reporting frameworks</li>
+        <h3>Industrial & Energy</h3>
+        <ul>
+          <li>Asset health, inventory, and throughput visibility</li>
+          <li>Demand signals and cost-to-serve analytics</li>
+          <li>Operational dashboards for plant and field teams</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Advisory</h3>
-        <ul class="list">
-          <li>Architecture reviews and migration planning</li>
-          <li>Cost-aware pipeline design</li>
-          <li>Cutover playbooks and runbooks</li>
+        <h3>Aviation & Transportation</h3>
+        <ul>
+          <li>Network performance and delay analytics</li>
+          <li>Maintenance planning data pipelines</li>
+          <li>Executive KPIs with audit-ready lineage</li>
         </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-      <p>Lema Analytics has delivered analytics and data-integration support for programs within the U.S. Army, Navy, Marine Corps, Office of the Secretary of Defense (CAPE and Advana initiatives), and the Federal Aviation Administration through subcontracting agreements.</p>
-      <ul class="list">
-        <li>Built and optimized tables and logic in Oracle and Databricks</li>
-        <li>Developed and adjusted Palantir Foundry and AWS data flows</li>
-        <li>Implemented secure local-to-SharePoint pipelines</li>
-        <li>Delivered mission dashboards in Tableau and Power BI</li>
-      </ul>
+<!-- EXPERIENCE -->
+<section id="experience" class="light">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Program support via subcontracting (2020–present). Documentation available on request.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Defense</h3>
+        <ul>
+          <li>U.S. Army — G-4 sustainment analytics; XVIII Airborne Corps data products</li>
+          <li>OSD — CAPE and Advana initiatives</li>
+          <li>U.S. Navy & U.S. Marine Corps — CAPE programs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Aviation</h3>
+        <ul>
+          <li>Federal Aviation Administration — analytics and reporting support</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Clearance & Compliance</h3>
+        <ul>
+          <li>Active U.S. government client support via subcontracting agreements</li>
+          <li>Security clearance verifiable upon request</li>
+          <li>No affiliation or endorsement implied</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- SUPPORTED PROGRAMS: TEXT-ONLY -->
-    <div class="programs" aria-label="Supported federal programs (text-only)">
-      <div class="program"><span class="dot"></span><span class="name">U.S. Army</span><span class="meta">G-4, XVIII Airborne Corps</span></div>
-      <div class="program"><span class="dot"></span><span class="name">U.S. Navy</span><span class="meta">CAPE initiatives</span></div>
-      <div class="program"><span class="dot"></span><span class="name">U.S. Marine Corps</span><span class="meta">CAPE initiatives</span></div>
-      <div class="program"><span class="dot"></span><span class="name">Office of the Secretary of Defense</span><span class="meta">CAPE · Advana</span></div>
-      <div class="program"><span class="dot"></span><span class="name">Federal Aviation Administration</span><span class="meta">Analytics support</span></div>
-    </div>
-
-    <p class="muted" style="margin-top:.7rem">
-      Agency names denote supported programs only. Lema Analytics is not directly affiliated with, endorsed by, or sponsored by these agencies.
+    <p style="margin:10px 0 0;color:#4b5563">
+      Agency names represent supported programs only. Lema Analytics is not directly affiliated with, endorsed by, or sponsored by these agencies.
     </p>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>For consulting inquiries:</p>
-      <p><strong>Email:</strong> <a href="mailto:info@lemaanalytics.com">info@lemaanalytics.com</a></p>
-      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/" target="_blank" rel="noopener">Connect</a></p>
-      <p class="muted">Active U.S. government client support through subcontracting agreements. Clearance status can be verified upon request.</p>
+<!-- CONTACT -->
+<section id="contact" class="hero" style="padding:64px 0">
+  <div class="wrap">
+    <div class="hero-card" style="max-width:820px;margin:0 auto">
+      <h3 style="margin-top:0">Start a project</h3>
+      <p class="sub" style="margin:6px 0 16px">Send scope, timeline, and stack. We’ll respond with a concrete plan and a first milestone.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:info@lemaanalytics.com">info@lemaanalytics.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>© <span id="year"></span> Lema Analytics. All rights reserved.</footer>
-</main>
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Lema Analytics. All rights reserved.
+  </div>
+</footer>
 
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
