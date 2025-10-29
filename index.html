@@ -71,9 +71,26 @@
     border-radius:var(--radius); padding:22px; color:#e7eeff;
   }
   .hero-card h3{margin:0 0 6px 0;font-size:18px}
-  .bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
-  .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);
-    padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:13px}
+  .h-sub{margin:0 0 6px 0;font-size:18px}
+  .ship-list{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    list-style:none;
+    padding:0;margin:8px 0 0 0;
+  }
+  .ship-list li{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    padding:10px 14px;
+    color:#e7eeff;
+    font-weight:600;
+  }
+  @media (max-width:900px){ .ship-list{grid-template-columns:1fr} }
+  /* tighten list spacing in experience cards */
+  .cards .card ul{margin:.25rem 0 0 0;padding-left:18px}
+  .cards .card li{margin:.35rem 0}
 
   /* ====== “Trusted by” text-only strip ====== */
   .trust{
@@ -172,16 +189,16 @@
       </div>
     </div>
     <div>
-      <div class="hero-card">
-        <h3>What we ship</h3>
-        <div class="bullets">
-          <span class="chip">Oracle → Databricks logic modernization</span>
-          <span class="chip">Foundry pipelines and QA gates</span>
-          <span class="chip">AWS data services and RDS tuning</span>
-          <span class="chip">SharePoint-integrated local flows</span>
-          <span class="chip">Power BI and Tableau exec dashboards</span>
-          <span class="chip">Metric catalogs and KPI governance</span>
-        </div>
+      <div class="hero-card" aria-label="What we ship">
+        <h3 class="h-sub">What we ship</h3>
+        <ul class="ship-list">
+          <li><span>Modern data stacks</span></li>
+          <li><span>Automated pipelines</span></li>
+          <li><span>Operational dashboards</span></li>
+          <li><span>Integrated workflows</span></li>
+          <li><span>Governed metrics</span></li>
+          <li><span>Runbooks &amp; hand-off kits</span></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -285,36 +302,40 @@
 <!-- EXPERIENCE -->
 <section id="experience" class="light">
   <div class="wrap">
-    <h2 class="section-title">Experience</h2>
-    <p class="section-sub">Program support via subcontracting (2020–present). Documentation available on request.</p>
+    <h2 class="section-title">Experience &amp; Impact</h2>
+    <p class="section-sub">Trusted by defense, aviation, and enterprise teams to modernize how they use data.</p>
 
     <div class="cards">
       <div class="card">
-        <h3>Defense</h3>
+        <h3>Data Infrastructure</h3>
         <ul>
-          <li>U.S. Army — G-4 sustainment analytics; XVIII Airborne Corps data products</li>
-          <li>OSD — CAPE and Advana initiatives</li>
-          <li>U.S. Navy & U.S. Marine Corps — CAPE programs</li>
+          <li>Replaced legacy logic with scalable Databricks/Foundry layers</li>
+          <li>Shipped automated, observable pipelines on AWS</li>
+          <li>Hardened reliability with tests, monitors, and alerts</li>
         </ul>
       </div>
+
       <div class="card">
-        <h3>Aviation</h3>
+        <h3>Analytics Delivery</h3>
         <ul>
-          <li>Federal Aviation Administration — analytics and reporting support</li>
+          <li>Executive and ops dashboards in Power BI and Tableau</li>
+          <li>Metric catalogs and KPI governance with lineage</li>
+          <li>Runbooks and hand-offs so teams own what we build</li>
         </ul>
       </div>
+
       <div class="card">
-        <h3>Clearance & Compliance</h3>
+        <h3>Programs &amp; Credentials</h3>
         <ul>
-          <li>Active U.S. government client support via subcontracting agreements</li>
-          <li>Security clearance verifiable upon request</li>
-          <li>No affiliation or endorsement implied</li>
+          <li>U.S. Army (G-4, XVIII Airborne Corps); OSD — CAPE &amp; Advana</li>
+          <li>U.S. Navy &amp; Marine Corps — CAPE; FAA programs</li>
+          <li>Active federal support via subcontracting; documentation on request</li>
         </ul>
       </div>
     </div>
 
     <p style="margin:10px 0 0;color:#4b5563">
-      Agency names represent supported programs only. Lema Analytics is not directly affiliated with, endorsed by, or sponsored by these agencies.
+      Agency names represent supported programs only. No affiliation or endorsement implied.
     </p>
   </div>
 </section>
