@@ -151,6 +151,39 @@
     .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
 </style>
+<style>
+  /* ====== Motion utilities ====== */
+  :root{ --mx:0; --my:0 }
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1; transform:translateY(0)}
+
+  /* Nav micro‑underline */
+  nav a{position:relative}
+  nav a::after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:linear-gradient(90deg, var(--accent), #60a5fa); transform:scaleX(0); transform-origin:left; transition:transform .25s ease}
+  nav a:hover::after{transform:scaleX(1)}
+
+  /* Hero animated gradient + floating blob */
+  .hero{--gx: 70%; --gy: -10%}
+  .hero::before{content:""; position:absolute; inset:0; background:
+      radial-gradient(1200px 600px at var(--gx) var(--gy), rgba(14,165,233,.28) 0%, transparent 60%),
+      radial-gradient(900px 500px at calc(0% + var(--mx)*8%) calc(-20% + var(--my)*8%), rgba(30,58,138,.55) 0%, transparent 60%);
+    transition: background-position .2s ease; pointer-events:none}
+  .blob{position:absolute; width:520px; height:520px; right:-60px; top:-80px; filter:blur(36px); opacity:.55; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(14,165,233,.6), transparent 60%), radial-gradient(circle at 70% 60%, rgba(96,165,250,.45), transparent 60%);
+    animation: blobFloat 12s ease-in-out infinite}
+  @keyframes blobFloat{0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}}
+
+  /* Card hover lift */
+  .card{transform:translateZ(0); transition:transform .2s ease, box-shadow .2s ease}
+  .card:hover{transform:translateY(-6px); box-shadow:0 18px 40px -18px rgba(16,24,40,.35)}
+
+  /* Marquee strip */
+  .marquee-wrap{overflow:hidden; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08); background:linear-gradient(90deg, rgba(14,165,233,.08), transparent 30%, rgba(96,165,250,.08))}
+  .marquee{display:flex; gap:40px; padding:12px 0; will-change:transform; animation: marquee 18s linear infinite}
+  .marquee span{white-space:nowrap; color:#9fb4d9; font-weight:600}
+  @keyframes marquee{from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+</style>
 </head>
 <body>
 
@@ -171,6 +204,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="blob" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div>
       <span class="kicker">Since 2020</span>
@@ -194,7 +228,7 @@
       </div>
     </div>
     <div>
-      <div class="hero-card" aria-label="What we ship">
+      <div class="hero-card reveal" aria-label="What we ship">
         <h3 class="h-sub">What we ship</h3>
         <ul class="ship-list">
           <li><span>Modern data stacks</span></li>
@@ -207,16 +241,25 @@
       </div>
     </div>
   </div>
+<!-- MARQUEE: tech capabilities -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="wrap">
+    <div class="marquee">
+      <span>Foundry • Databricks • Oracle • AWS • Azure • Terraform • Airflow • dbt • Power BI • Tableau</span>
+      <span>Foundry • Databricks • Oracle • AWS • Azure • Terraform • Airflow • dbt • Power BI • Tableau</span>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- SOLUTIONS -->
 <section id="solutions" class="light">
   <div class="wrap">
-    <h2 class="section-title">Solutions</h2>
+    <h2 class="section-title reveal">Solutions</h2>
     <p class="section-sub">Architecture, implementation, and handoff. We play well with existing stacks.</p>
 
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Data Engineering</h3>
         <ul>
           <li>Schema and transformation design in Oracle & Databricks</li>
@@ -227,7 +270,7 @@
           <span class="badge">Orchestrated</span><span class="badge">Tested</span><span class="badge">Versioned</span>
         </div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Analytics & BI</h3>
         <ul>
           <li>Power BI and Tableau dashboards with row-level security</li>
@@ -238,7 +281,7 @@
           <span class="badge">Governed</span><span class="badge">Performant</span><span class="badge">Maintainable</span>
         </div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Integration & Automation</h3>
         <ul>
           <li>Palantir Foundry pipelines with QA checks</li>
@@ -252,7 +295,7 @@
     </div>
 
     <div class="band">
-      <div class="panel">
+      <div class="panel reveal">
         <h3 style="color:var(--primary);margin-top:0">Engagement models</h3>
         <ul>
           <li>Scoped delivery with fixed milestones</li>
@@ -260,7 +303,7 @@
           <li>Architecture reviews and rescue projects</li>
         </ul>
       </div>
-      <div class="panel">
+      <div class="panel reveal">
         <h3 style="color:var(--primary);margin-top:0">Technologies we work with</h3>
         <p style="margin:.4rem 0 0">
           Oracle · AWS · Databricks · Palantir Foundry · Power BI · Tableau
@@ -273,10 +316,10 @@
 <!-- INDUSTRIES -->
 <section id="industries" class="light" style="background:#fff">
   <div class="wrap">
-    <h2 class="section-title">Industries</h2>
+    <h2 class="section-title reveal">Industries</h2>
     <p class="section-sub">We operate across public sector and private markets.</p>
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Public Sector</h3>
         <ul>
           <li>Defense logistics and sustainment analytics</li>
@@ -284,7 +327,7 @@
           <li>Data modernization for secure environments</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Industrial & Energy</h3>
         <ul>
           <li>Asset health, inventory, and throughput visibility</li>
@@ -292,7 +335,7 @@
           <li>Operational dashboards for plant and field teams</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Aviation & Transportation</h3>
         <ul>
           <li>Network performance and delay analytics</li>
@@ -307,11 +350,11 @@
 <!-- EXPERIENCE -->
 <section id="experience" class="light">
   <div class="wrap">
-    <h2 class="section-title">Experience &amp; Impact</h2>
+    <h2 class="section-title reveal">Experience &amp; Impact</h2>
     <p class="section-sub">Trusted by defense, aviation, and enterprise teams to modernize how they use data.</p>
 
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Data Infrastructure</h3>
         <ul>
           <li>Replaced legacy logic with scalable Databricks/Foundry layers</li>
@@ -320,7 +363,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <h3>Analytics Delivery</h3>
         <ul>
           <li>Executive and ops dashboards in Power BI and Tableau</li>
@@ -329,7 +372,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <h3>Programs &amp; Credentials</h3>
         <ul>
           <li>U.S. Army (G-4, XVIII Airborne Corps); OSD — CAPE &amp; Advana</li>
@@ -348,25 +391,25 @@
 <!-- DATA PROTECTION & RELIABILITY -->
 <section id="security" class="light">
   <div class="wrap">
-    <h2 class="section-title">Data Protection &amp; Reliability</h2>
+    <h2 class="section-title reveal">Data Protection &amp; Reliability</h2>
     <p class="section-sub">Secure design and disciplined operations are built into every engagement.</p>
 
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Access &amp; Encryption</h3>
         <ul>
           <li>Data encrypted in transit (TLS 1.2+) and at rest (AES-256)</li>
           <li>Role-based access control with activity logging</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Operational Integrity</h3>
         <ul>
           <li>Change-controlled deployment and version history</li>
           <li>Automated tests and monitoring for pipeline uptime</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Governance Alignment</h3>
         <ul>
           <li>Workspaces isolated per client</li>
@@ -380,7 +423,7 @@
 <!-- CONTACT -->
 <section id="contact" class="hero" style="padding:64px 0">
   <div class="wrap">
-    <div class="hero-card" style="max-width:820px;margin:0 auto;text-align:center">
+    <div class="hero-card reveal" style="max-width:820px;margin:0 auto;text-align:center">
       <h3 style="margin-top:0">Book a 30-minute intro call</h3>
       <p class="sub" style="margin:6px 0 20px">
         Discuss your data environment, goals, and timeline. We’ll provide a concrete next step.
@@ -423,7 +466,37 @@
     }
   })();
 
+</script>
+
+<script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll‑reveal using IntersectionObserver
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in');}); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(ent){ if(ent.isIntersecting){ ent.target.classList.add('in'); io.unobserve(ent.target); } });
+    }, {threshold: .12});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+  // Subtle parallax for hero background using pointer location
+  (function(){
+    var hero = document.querySelector('section.hero');
+    if(!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5; // -0.5..0.5
+      var y = (e.clientY - r.top) / r.height - .5;
+      document.documentElement.style.setProperty('--mx', x.toFixed(3));
+      document.documentElement.style.setProperty('--my', y.toFixed(3));
+    });
+    hero.addEventListener('pointerleave', function(){
+      document.documentElement.style.setProperty('--mx', 0);
+      document.documentElement.style.setProperty('--my', 0);
+    });
+  })();
 </script>
 </body>
 </html>
